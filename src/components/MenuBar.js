@@ -1,6 +1,6 @@
 import React from 'react'
 
-const MenuBar = (props) => {
+class MenuBar extends React.Component{
 
   /*
 
@@ -12,26 +12,33 @@ const MenuBar = (props) => {
   this component be made aware of what is currently the active menu item?
 
   */
+  handleClick = e => {
+    this.props.changeDisplay(e.target.id)
+  }
 
-  return (
-    <div className="ui four item menu">
-      <a className="item active" id="profile">
-        <i className="user large icon" id="profile"/>
-      </a>
+  render(){
 
-      <a className="item" id="photo">
-        <i className="photo large icon" id="photo"/>
-      </a>
+    return (
+      <div className="ui four item menu">
+        <a className={"item " + (this.props.selected === "profile" ? "active" : "")} id="profile" onClick={this.handleClick}>
+          <i className="user large icon" id="profile"/>
+        </a>
 
-      <a className="item" id="cocktail">
-        <i className="cocktail large icon" id="cocktail"/>
-      </a>
+        <a className={"item " + (this.props.selected === "photo" ? "active" : "")} id="photo" onClick={this.handleClick}>
+          <i className="photo large icon" id="photo"/>
+        </a>
 
-      <a className="item" id="pokemon"> 
-        <i className=" themeisle large icon" id="pokemon"/>
-      </a>
-    </div>
-  )
+        <a className={"item " + (this.props.selected === "cocktail" ? "active" : "")} id="cocktail" onClick={this.handleClick}>
+          <i className="cocktail large icon" id="cocktail"/>
+        </a>
+
+        <a className={"item " + (this.props.selected === "pokemon" ? "active" : "")} id="pokemon" onClick={this.handleClick}> 
+          <i className=" themeisle large icon" id="pokemon"/>
+        </a>
+      </div>
+    )
+
+    }
 
 }
 
